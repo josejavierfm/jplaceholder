@@ -1,13 +1,13 @@
 /*
 	jplaceholder.JS
-	V. 1.0.0
+	V. 1.0.1
 	José Javier Fernández Mendoza 2018
 	Require jquery
 	Añade un parrafo a cada elemento con el atributo "placeholder" para poner el texto debajo si no tiene valor
 	El parrafo se llamara igual que la caja asociada terminando en _placeholder y tendrá la clase "jPHempty"
 	Añade el codigo necesario css en el head 
-	
-	Para llamarlo añadir la linea despues de incluir jquery y este fichero
+	1.0.1 Ya no es necesario añadir la linea despues, lo hace al finalizar la carga de la pagina automaticamente.
+	1.0.0 Para llamarlo añadir la linea despues de incluir jquery y este fichero
 	  $('input').jPlaceHolderEmpty();
 	
 */
@@ -17,7 +17,7 @@
   $.fn.jPlaceHolderEmpty = function() {
 
     return this.each(function(i, element) {
-		$(element).keyup(function updateCharCounter() {
+		$(element).change(function updateCharCounter() {
 
 			var $me = $(this);
 			var PH = $me.attr('placeholder');
@@ -37,9 +37,11 @@
 			var PH = $me.attr('placeholder');
 			if (PH!="" && PH!=undefined){
 				var charCount = $me.val().length;
+				//comprobamos que no exista ya
 				var nombrecajaPH=$me.prop('id')+"_placeholder";
 				var cajaPH = $('#'+nombrecajaPH);
-				if (cajaPH){
+				
+				if (cajaPH.length==0){
 					$me.after('<p id="'+nombrecajaPH+'" class="jPHempty"></p>');
 				}
 				cajaPH = $('#'+nombrecajaPH);
@@ -56,3 +58,6 @@
   $( "<style>.jPHempty {  float: right;  clear: both;  margin-bottom: 10px;  font: 400 0.7em 'Roboto';  text-align: right;  color: #777777;}</style>" ).appendTo( "head" )
   
 }(jQuery));
+$( document ).ready(function() {
+	 $('input').jPlaceHolderEmpty();
+});
