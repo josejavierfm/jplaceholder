@@ -1,11 +1,12 @@
 /*
 	jplaceholder.JS
-	V. 1.0.3
-	José Javier Fernández Mendoza 2019/12
+	V. 1.0.4
+	José Javier Fernández Mendoza 2021/03
 	Require jquery
 	Añade un parrafo a cada elemento con el atributo "placeholder" para poner el texto debajo si no tiene valor
 	El parrafo se llamara igual que la caja asociada terminando en _placeholder y tendrá la clase "jPHempty"
 	Añade el codigo necesario css en el head 
+	1.0.4 lo aplica por defecto a los select tambien
 	1.0.3 una variable (jplaceevenempty)indica si aparece incluso cuando no está vacio y nuevo parametro de jrango
 	1.0.2 Si la caja de texto está oculta el placeholder tambien tiene que estar oculta
 	1.0.1 Ya no es necesario añadir la linea despues, lo hace al finalizar la carga de la pagina automaticamente.
@@ -81,4 +82,5 @@
   var jplaceevenempty=false;
   $( document ).ready(function() {
 	   $('input').jPlaceHolderEmpty();
+	   $('select').jPlaceHolderEmpty();
   });
